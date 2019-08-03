@@ -1,7 +1,8 @@
 # Site settings
 title: Jottap
 email: joaopaulo_oli@hotmail.com
-url: jottap.github.io
+url:
+baseurl: ""
 description:
 keywords: 
 skills: "Game Developer"
