@@ -1,0 +1,13 @@
+---
+layout: default
+modal-id: 3
+title: Ilhas do Alfabeto
+date: 2018-04-01
+img: ilhas.jpg
+alt: image-alt
+project-date: April 2018
+client: Instituto Alfa e Beto
+category: Game Developer Unity
+description: Ilhas do Alfabeto is a very beautiful 2D game developed to teach portuguese literacy to 6 years old children. The game is separated by 4 islands replete of minigames where the child will learn to identify, distinct, read and order the alphabet letters, calygraphy, indentify phonemes, read and write words, create sentences and finally read texts via Speech Recognizer.
+
+---

@@ -1,0 +1,13 @@
+---
+layout: default
+modal-id: 2
+title: Flui
+date: 2017-12-01
+img: flui.png
+alt: image-alt
+project-date: December 2017
+client: Instituto Alfa e Beto
+category: Game Developer Unity
+description: Flui is an educational game to teach Portuguese Fluency.
+
+---
