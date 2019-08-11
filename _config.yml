@@ -26,10 +26,17 @@ disqus_shortname: Jottap
 
 # Color settings (hex-codes without the leading hash-tag)
 color:
-  primary: 18bc9c #80B3FF
-  primary-rgb: "24,288,156" #"128,179,255"
-  secondary: 2c3e50 #FD6E8A
-  secondary-dark: 233140 #A2122F
+  primary: FD6D03 #353535 #18bc9c #80B3FF
+  primary-rgb: "109, 109, 109" #"24,288,156" #"128,179,255"
+  secondary: 353535 #FFCC00 #2c3e50 #FD6E8A
+  secondary-dark: 515151 #e0c600 #233140 #A2122F
+
+#cores
+# cinza : 353535
+# cinza claro : 666666
+# amarelo : 
+# laranja : FD6D03
+
 
 # Footer settings
 footer:
@@ -44,6 +51,8 @@ social:
     url: https://twitter.com/JottaP7
   - title: github
     url: https://github.com/jottap
+  - title: linkedin
+    url: https://www.linkedin.com/in/joao-paulo-olveira/
 
 # Postal address (add as many lines as necessary)
 address:
