@@ -47,8 +47,8 @@ footer:
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
-  - title: twitter
-    url: https://twitter.com/JottaP7
+  #- title: twitter
+  #  url: 
   - title: github
     url: https://github.com/jottap
   - title: linkedin
