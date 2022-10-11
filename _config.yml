@@ -1,12 +1,13 @@
 # Site settings
-title: Jottap
+title: João Paulo M. Oliveira
 email: joaopaulo_oli@hotmail.com
 url:
 baseurl: ""
 description:
 keywords: 
-skills: "Game Developer"
-meta_author: Oliveira João
+skills: "Game Developer | Unity Software Engineer | C#"
+meta_author: "Oliveira João"
+title_social: Social Media
 
 # Google webmaster tools
 google_verify: 
@@ -26,23 +27,21 @@ disqus_shortname: Jottap
 
 # Color settings (hex-codes without the leading hash-tag)
 color:
-  primary: FD6D03 #353535 #18bc9c #80B3FF
-  primary-rgb: "109, 109, 109" #"24,288,156" #"128,179,255"
+  primary: 35ad31
+  primary-rgb: "0, 0, 0" #"24,288,156" #"128,179,255"
   secondary: 353535 #FFCC00 #2c3e50 #FD6E8A
-  secondary-dark: 515151 #e0c600 #233140 #A2122F
+  secondary-dark: 000000 #e0c600 #233140 #A2122F
 
 #cores
 # cinza : 353535
 # cinza claro : 666666
 # amarelo : 
-# laranja : FD6D03
-
+# green : 35ad31
 
 # Footer settings
 footer:
   copyright: Dr. Henry Jekyll
   location: Location
-  social: Around the Web
   credits: Credits
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
@@ -52,7 +51,7 @@ social:
   - title: github
     url: https://github.com/jottap
   - title: linkedin
-    url: https://www.linkedin.com/in/joao-paulo-olveira/
+    url: https://www.linkedin.com/in/joao-paulo-oli/
 
 # Postal address (add as many lines as necessary)
 address:
