@@ -1,5 +1,6 @@
     <!-- Footer -->
     <footer class="text-center">
+        <section class="success" id="footer">
         <div class="footer-above">
             <div class="container">
                 <div class="row">
@@ -10,7 +11,7 @@
                         <ul class="list-inline">
                             {% for network in site.social %}
                             <li>
-                                <a href="{{ network.url }}" class="btn-social btn-outline"><i class="fa fa-fw fa-{{ network.title }}"></i></a>
+                                <a href="{{ network.url }}" class="btn-social btn-outline"><i class="fa-brands fa-{{ network.title }}"></i></a>
                             </li>
 		                    {% endfor %}
                         </ul>
@@ -31,6 +32,7 @@
                 </div>
             </div>
         </div>
+    </section>
     </footer>
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
