@@ -28,15 +28,14 @@ disqus_shortname: Jottap
 # Color settings (hex-codes without the leading hash-tag)
 color:
   primary: 35ad31
-  primary-rgb: "0, 0, 0" #"24,288,156" #"128,179,255"
-  secondary: 353535 #FFCC00 #2c3e50 #FD6E8A
-  secondary-dark: 000000 #e0c600 #233140 #A2122F
+  primary-rgb: "0, 0, 0" 
+  secondary: 353535 
+  secondary-dark: 353535 
 
-#cores
-# cinza : 353535
-# cinza claro : 666666
-# amarelo : 
-# green : 35ad31
+# Colors
+#  - gray : 353535
+#  - gray light : 666666
+#  - green : 35ad31
 
 # Footer settings
 footer:
@@ -57,7 +56,6 @@ social:
 
 # Postal address (add as many lines as necessary)
 address:
-  - line: 
   - line: 
 
 # Credits content
