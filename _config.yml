@@ -50,8 +50,10 @@ social:
   #  url: 
   - title: github
     url: https://github.com/jottap
-  - title: linkedin
+  - title: linkedin-in
     url: https://www.linkedin.com/in/joao-paulo-oli/
+  - title: itch-io
+    url: https://jottap.itch.io/
 
 # Postal address (add as many lines as necessary)
 address:
