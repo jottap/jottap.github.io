@@ -36,6 +36,7 @@ h6 {
     font-weight: 700;
 }
 
+hr.star-dark,
 hr.star-light,
 hr.star-primary {
     margin: 25px auto 30px;
@@ -47,9 +48,10 @@ hr.star-primary {
     overflow: visible;
 }
 
+hr.star-dark:after,
 hr.star-light:after,
 hr.star-primary:after {
-    content: "\f005";
+    content: "\f11b";
     display: inline-block;
     position: relative;
     top: -.8em;
@@ -58,6 +60,7 @@ hr.star-primary:after {
     font-size: 2em;
 }
 
+hr.star-dark,
 hr.star-light {
     border-color: #fff;
 }
@@ -65,6 +68,11 @@ hr.star-light {
 hr.star-light:after {
     color: #fff;
     background-color: #{{ site.color.primary }};
+}
+
+hr.star-dark:after {
+    color: #fff;
+    background-color: #{{ site.color.secondary }};
 }
 
 hr.star-primary {
@@ -185,6 +193,11 @@ section.success {
     background: #{{ site.color.primary }};
 }
 
+section.dark {
+    color: #fff;
+    background: #{{ site.color.secondary }};
+}
+
 @media(max-width:767px) {
     section {
         padding: 75px 0;
@@ -267,7 +280,7 @@ section.success {
 .btn-outline.active {
     border: solid 2px #fff;
     color: #{{ site.color.primary }};
-    background: #fff;
+    background: #{{ site.color.secondary }};
 }
 
 .floating-label-form-group {
@@ -390,6 +403,8 @@ footer .footer-below {
     padding: 100px 0;
     min-height: 100%;
     border: 0;
+    background-color: #{{ site.color.secondary }};
+    color: #fff;
     border-radius: 0;
     text-align: center;
     background-clip: border-box;
@@ -418,6 +433,7 @@ footer .footer-below {
     height: 75px;
     background-color: transparent;
     cursor: pointer;
+    color: #fff;
 }
 
 .portfolio-modal .close-modal:hover {
