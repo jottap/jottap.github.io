@@ -9,13 +9,16 @@
                         <hr class="star-light">
                         <span class="skills">{{ site.skills }}</span>
                         <div class="col-md-12">
-                            <h3>{{ site.title_social }}</h3>
                             <ul class="list-inline">
                                 {% for network in site.social %}
                                 <li>
                                     <a href="{{ network.url }}" class="btn-social btn-outline"><i class="fa-brands fa-{{ network.title }}"></i></a>
                                 </li>
                                 {% endfor %}
+                            </ul>
+                            <ul class="list-inline">
+                                <a style="color:white" href="pdf/{{site.curriculum}}" target="_blank"><i class="btn-social btn-outline">CV</i> Download CV </a>
+                                
                             </ul>
                         </div>
                     </div>
