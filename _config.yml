@@ -65,8 +65,11 @@ credits: 'Freelancer is a free to use, open source Bootstrap theme created by <a
 markdown: kramdown
 permalink: pretty
 
-about: "Graduated in Computer Science in 2015 with
-experiences
-● Unity 3D engine
-● C#
-● Database "
+curriculum: JoaoPaulo_Unity_Developer.pdf
+
+about: "<p> Graduated in computer science with extensive knowledge in Unity, C# and object-oriented programming.
+Proficient in Clean Code and Clean Architecture. <p>I began my professional career as a Systems Programmer, gaining knowledge and practices connected to
+the area of my fascination: game development, due to my passion for the RPG genre. <p>Extensive IT knowledge with a primary focus on working as a Unity Developer. My main projects include
+multiplayer, card, casual, minigames, and educational games. Apps development for platforms of
+mini-games and interactive books. Also created projects for web, PC, and mobile devices (Android and
+iOS).</p>"
