@@ -7,7 +7,7 @@ cover-img: menu-game.png
 img_1: menu-game.png
 img_2: menu-game.png
 alt: image-alt
-project-date: Octuber 2020
+project-date: October 2020
 client: Cedro and Narrativa da Imaginação
 category: Profissional
 service: Game Develop

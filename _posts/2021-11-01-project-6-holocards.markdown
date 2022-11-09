@@ -7,7 +7,7 @@ cover-img: holocards.png
 img_1: holocards.png
 img_2: holocards.png
 alt: image-alt
-project-date: Octuber 2021
+project-date: October 2021
 client: Cosmo Flakes
 category: Profissional
 service: Game Develop
