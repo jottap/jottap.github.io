@@ -1,0 +1,63 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ArchiveTable, {
+    type ArchiveProject,
+} from "../../components/ArchiveTable";
+import { getCollection } from "astro:content";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = "pt"; // Explicitly set for this file
+const t = useTranslations(lang);
+
+const projects = await getCollection("projects");
+
+// Transform data for table
+const tableData: ArchiveProject[] = projects
+    .map((p) => {
+        const hasContent = p.body?.trim().length > 0;
+        const externalLink =
+            p.data.store_links?.web ??
+            p.data.store_links?.itch ??
+            p.data.store_links?.steam ??
+            p.data.store_links?.android ??
+            p.data.store_links?.ios;
+
+        // Ensure we try to get localized title if available in frontmatter or fall back
+        const title = p.data.i18n?.pt?.title || p.data.title;
+
+        return {
+            year: p.data.date ? p.data.date.getFullYear().toString() : "—",
+            title: title || "Untitled",
+            category: p.data.category,
+            type: p.data.type,
+            tech: p.data.tech,
+            link: hasContent
+                ? `/projects/${p.slug}?from=archive`
+                : externalLink,
+            slug: p.slug,
+        };
+    })
+    .sort((a, b) => b.year.localeCompare(a.year)); // Sort by year descending
+---
+
+<Layout title={`${t("archive.title")} | JP`} lang={lang}>
+    <main class="py-24 px-4 bg-primary min-h-screen">
+        <div class="max-w-6xl mx-auto">
+            <header class="mb-12">
+                <a
+                    href="/pt"
+                    class="text-accent hover:text-white transition-colors mb-4 inline-block font-mono text-sm"
+                    >&larr; {t("project.back_home")}</a
+                >
+                <h1 class="text-5xl font-display font-bold text-white mb-4">
+                    {t("archive.title")}
+                </h1>
+                <p class="text-forge-300 text-lg max-w-2xl">
+                    {t("archive.subtitle")}
+                </p>
+            </header>
+
+            <ArchiveTable client:load projects={tableData} lang={lang} />
+        </div>
+    </main>
+</Layout>

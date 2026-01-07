@@ -1,0 +1,216 @@
+---
+import { profile } from "../data/profile";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getEntry } from "astro:content";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { name, title, bio, socials, avatar_url, cv_download_url } = profile;
+
+const heroData = await getEntry("sections", `${lang}/hero`);
+const subtitle = heroData?.data?.subtitle || t("hero.subtitle");
+---
+
+<section
+  id="hero"
+  class="relative min-h-screen flex flex-col justify-center items-center pt-20 pb-32 overflow-hidden print:pt-0 print:min-h-0"
+>
+  {/* Background Elements */}
+  <div class="absolute inset-0 z-0 bg-primary print:hidden">
+    <div
+      class="absolute top-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 left-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl delay-1000 animate-pulse"
+    >
+    </div>
+    <!-- <div class="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div> -->
+  </div>
+
+  <div class="relative z-10 px-6 md:px-4 max-w-6xl mx-auto w-full print:px-0">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center print:block"
+    >
+      <!-- Left Column: Text -->
+      <div class="text-left order-2 md:order-1 print:text-left">
+        <div
+          class="mb-4 inline-block px-3 py-1 bg-surface rounded-xl border border-forge-800 animate-fade-in print:hidden"
+        >
+          <span class="text-accent text-sm font-mono tracking-wide"
+            >● {t("hero.available")}</span
+          >
+        </div>
+
+        <h1
+          class="text-4xl md:text-7xl font-display font-bold text-white mb-2 leading-tight print:text-black"
+        >
+          {name}
+        </h1>
+        <h2
+          class="text-2xl md:text-3xl font-display font-medium text-accent mb-6 bg-clip-text bg-gradient-to-r from-accent via-orange-500 to-yellow-500 print:text-black"
+        >
+          {title}
+        </h2>
+
+        <p
+          class="text-lg text-forge-300 mb-8 max-w-lg leading-relaxed print:text-black"
+        >
+          {subtitle}
+        </p>
+
+        <!-- Social Icons -->
+        <div class="flex gap-4 mb-8 print:hidden">
+          {
+            socials.map((social) => (
+              <a
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface border border-forge-700 text-forge-400 hover:text-white hover:border-accent hover:bg-forge-800 transition-all duration-300 group"
+                aria-label={social.name}
+              >
+                {social.icon === "github" && (
+                  <svg
+                    class="w-5 h-5 group-hover:scale-110 transition-transform"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                )}
+                {social.icon === "linkedin" && (
+                  <svg
+                    class="w-5 h-5 group-hover:scale-110 transition-transform"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                )}
+                {social.icon === "itchio" && (
+                  <svg
+                    class="w-5 h-5 group-hover:scale-110 transition-transform"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M3.13 1.338C2.08 1.96.02 4.328 0 4.95v1.03c0 1.303 1.22 2.45 2.325 2.45 1.33 0 2.436-1.102 2.436-2.41 0 1.308 1.07 2.41 2.4 2.41 1.328 0 2.362-1.102 2.362-2.41 0 1.308 1.137 2.41 2.466 2.41h.024c1.33 0 2.466-1.102 2.466-2.41 0 1.308 1.034 2.41 2.363 2.41 1.33 0 2.4-1.102 2.4-2.41 0 1.308 1.106 2.41 2.435 2.41C22.78 8.43 24 7.282 24 5.98V4.95c-.02-.62-2.082-2.99-3.13-3.612-3.253-.114-5.508-.134-8.87-.133-3.362 0-7.945.053-8.87.133zm6.376 6.477a2.74 2.74 0 0 1-.468.602c-.5.49-1.19.795-1.947.795a2.786 2.786 0 0 1-1.95-.795c-.182-.178-.32-.37-.446-.59-.127.222-.303.412-.486.59a2.788 2.788 0 0 1-1.95.795c-.092 0-.187-.025-.264-.052-.107 1.113-.152 2.176-.168 2.95v.005l-.006 1.167c.02 2.334-.23 7.564 1.03 8.85 1.952.454 5.545.662 9.15.663 3.605 0 7.198-.21 9.15-.664 1.26-1.284 1.01-6.514 1.03-8.848l-.006-1.167v-.004c-.016-.775-.06-1.838-.168-2.95-.077.026-.172.052-.263.052a2.788 2.788 0 0 1-1.95-.795c-.184-.178-.36-.368-.486-.59-.127.22-.265.412-.447.59a2.786 2.786 0 0 1-1.95.794c-.76 0-1.446-.303-1.948-.793a2.74 2.74 0 0 1-.468-.602 2.738 2.738 0 0 1-.463.602 2.787 2.787 0 0 1-1.95.794h-.16a2.787 2.787 0 0 1-1.95-.793 2.738 2.738 0 0 1-.464-.602zm-2.004 2.59v.002c.795.002 1.5 0 2.373.953.687-.072 1.406-.108 2.125-.107.72 0 1.438.035 2.125.107.873-.953 1.578-.95 2.372-.953.376 0 1.876 0 2.92 2.934l1.123 4.028c.832 2.995-.266 3.068-1.636 3.07-2.03-.075-3.156-1.55-3.156-3.025-1.124.184-2.436.276-3.748.277-1.312 0-2.624-.093-3.748-.277 0 1.475-1.125 2.95-3.156 3.026-1.37-.004-2.468-.077-1.636-3.072l1.122-4.027c1.045-2.934 2.545-2.934 2.92-2.934zM12 12.714c-.002.002-2.14 1.964-2.523 2.662l1.4-.056v1.22c0 .056.56.033 1.123.007.562.026 1.124.05 1.124-.008v-1.22l1.4.055C14.138 14.677 12 12.713 12 12.713z" />
+                  </svg>
+                )}
+                {social.icon === "discord" && (
+                  <svg
+                    class="w-5 h-5 group-hover:scale-110 transition-transform"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1892.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.1023.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                )}
+              </a>
+            ))
+          }
+        </div>
+
+        <div
+          class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto print:hidden"
+        >
+          <a
+            href="#projects"
+            class="h-12 w-full sm:w-auto flex justify-center items-center px-8 bg-accent text-black font-bold rounded-xl hover:bg-accent-light transition-all shadow-lg shadow-accent/20 hover:shadow-accent/40 hover:-translate-y-1"
+          >
+            {t("hero.viewProjects")}
+          </a>
+          <a
+            href={profile.cv_download_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="h-12 w-full sm:w-auto flex justify-center items-center px-8 bg-transparent text-forge-300 border border-forge-800 font-medium rounded-xl hover:text-white hover:border-accent transition-all gap-2 group"
+          >
+            <svg
+              class="w-5 h-5 group-hover:text-accent transition-colors"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              ></path></svg
+            >
+            {t("hero.downloadCv")}
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Profile Image -->
+      <div
+        class="relative order-1 md:order-2 flex justify-center md:justify-end print:hidden"
+      >
+        <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+          <div
+            class="absolute inset-0 bg-accent rounded-full blur-3xl opacity-20 animate-pulse"
+          >
+          </div>
+          <img
+            src={profile.avatar_url}
+            alt={profile.name}
+            class="relative z-10 w-full h-full object-cover [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] drop-shadow-2xl grayscale hover:grayscale-0 transition-all duration-500"
+            style="mask-image: linear-gradient(to bottom, black 60%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20">
+    <a href="#projects" aria-label="Scroll to projects">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="w-6 h-6 text-muted animate-bounce opacity-75 hover:opacity-100 hover:text-accent transition-all cursor-pointer"
+      >
+        <path d="M12 5v14"></path>
+        <path d="m19 12-7 7-7-7"></path>
+      </svg>
+    </a>
+  </div>
+
+  <style>
+    @keyframes slow-spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    .animate-slow-spin {
+      animation: slow-spin 60s linear infinite;
+    }
+  </style>
+</section>

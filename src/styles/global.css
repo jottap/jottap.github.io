@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Mode Palette - Industrial Platinum */
+    --color-primary: #E2E4E7;
+    /* Platinum Grey - Global Background */
+    --color-surface: #F1F3F5;
+    /* Off-white Neutral - Cards & Containers */
+    --color-accent: #EA580C;
+    /* Orange */
+    --color-accent-light: #F97316;
+    --color-accent-dark: #C2410C;
+    --color-text-main: #111827;
+    /* Coal Black - High Contrast */
+    --color-text-muted: #4B5563;
+    /* Gray-600 */
+  }
+
+  .dark {
+    /* Vulkan Forge Dark Palette */
+    --color-primary: #181616;
+    --color-surface: #262323;
+    --color-accent: #EA580C;
+    --color-accent-light: #F97316;
+    --color-accent-dark: #C2410C;
+    --color-text-main: #E7E5E4;
+    --color-text-muted: #A8A29E;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-primary text-main font-sans antialiased selection:bg-accent selection:text-black transition-colors duration-300;
+  }
+
+  /* Accessibility enforcement: Always black text on accent backgrounds */
+  .bg-accent,
+  .bg-orange-500,
+  .hover\:bg-accent:hover,
+  .hover\:bg-orange-500:hover {
+    @apply text-black;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-surface;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-accent-dark rounded hover:bg-accent transition-colors;
+}
+
+/* Scrollbar Hide Utility */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

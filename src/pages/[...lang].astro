@@ -1,0 +1,92 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero.astro";
+import { getCollection } from "astro:content";
+import About from "../components/About.astro";
+import Experience from "../components/Experience";
+import Projects from "../components/Projects";
+import Skills from "../components/Skills.astro";
+import Connect from "../components/Connect.astro";
+
+export async function getStaticPaths() {
+    return [
+        { params: { lang: undefined } }, // Corresponds to /
+        { params: { lang: "pt" } }, // Corresponds to /pt
+    ];
+}
+
+const { lang } = Astro.params;
+const currentLang = (lang || "en") as "en" | "pt";
+
+// Get content based on language
+// Get content based on language
+const allProjects = await getCollection("projects", ({ id }) => {
+    // Include legacy files (e.g., "en/...", "pt/...") matching current lang
+    // AND unified files (root level, no specific prefix that implies another lang)
+    const isLegacy = id.startsWith("en/") || id.startsWith("pt/");
+    const isCurrentLangLegacy = id.startsWith(`${currentLang}/`);
+    const isUnified = !id.includes("/"); // Heuristic for root-level files
+
+    return isCurrentLangLegacy || isUnified;
+});
+
+const allExperience = await getCollection("experience", ({ id }) =>
+    id.startsWith(`${currentLang}/`),
+);
+
+// Normalize Projects Data (Handle i18n fallback)
+const normalizedProjects = allProjects
+    .map((project) => {
+        const data = { ...project.data };
+
+        // If unified file with i18n, override title/desc/subtitle
+        const localized = data.i18n?.[currentLang as "en" | "pt"];
+        if (localized) {
+            data.title = localized.title || data.title;
+            data.desc =
+                localized.description || (localized as any).desc || data.desc;
+        }
+
+        // Ensure required fields for UI
+        data.title = data.title || "Untitled Project";
+        data.desc = data.desc || "";
+
+        // Fix image paths if needed
+        if (data.cover_image && !data.image) {
+            data.image = data.cover_image; // Fallback for grid
+        }
+
+        return {
+            ...project,
+            data,
+        };
+    })
+    .filter((p) => p.data.showcase);
+
+// Sort contents
+const sortedProjects = normalizedProjects.sort(
+    (a: any, b: any) =>
+        (a.data.sortOrder ?? 100) - (b.data.sortOrder ?? 100) ||
+        (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0),
+);
+const sortedExperience = allExperience.sort(
+    (a: any, b: any) => b.data.startDate.valueOf() - a.data.startDate.valueOf(),
+);
+---
+
+<Layout title="JottaP | Unity Tech Lead" lang={currentLang}>
+    <Navbar client:load lang={currentLang} />
+    <main>
+        <Hero />
+        <About />
+        <Projects client:visible projects={sortedProjects} lang={currentLang} />
+        <Experience
+            client:load
+            experiences={sortedExperience}
+            lang={currentLang}
+        />
+        <Skills />
+        <Connect />
+    </main>
+</Layout>

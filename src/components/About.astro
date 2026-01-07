@@ -1,0 +1,103 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getEntry } from "astro:content";
+import { getAboutCards } from "../data/about";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const cards = getAboutCards(lang as any);
+
+const aboutData = await getEntry("sections", `${lang}/about`);
+let PluginContent;
+if (aboutData) {
+    const rendered = await aboutData.render();
+    PluginContent = rendered.Content;
+}
+---
+
+<section
+    id="about"
+    class="scroll-mt-24 py-12 bg-forge-900 border-b border-forge-800 bg-surface"
+>
+    <div class="max-w-4xl mx-auto px-6 md:px-4 text-center">
+        <h2 class="text-2xl md:text-3xl font-display font-bold text-white mb-6">
+            <span class="text-magma-500">{t("about.role1")}</span> & <span
+                class="text-magma-500">{t("about.role2")}</span
+            >
+        </h2>
+        <div class="text-forge-200 text-lg leading-relaxed max-w-3xl mx-auto">
+            {
+                PluginContent ? (
+                    <PluginContent />
+                ) : (
+                    <p set:html={t("about.desc")} />
+                )
+            }
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+            {
+                cards.map((card) => (
+                    <div class="group p-6 bg-black/5 dark:bg-white/5 rounded-xl border border-accent hover:border-accent transition-all duration-300 backdrop-blur-sm hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5">
+                        <div class="text-magma-500 mb-4 transform group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(234,88,12,0.5)] transition-all duration-300">
+                            {card.icon === "architecture" && (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="w-10 h-10 mx-auto"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                                    />
+                                </svg>
+                            )}
+                            {card.icon === "leadership" && (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="w-10 h-10 mx-auto"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                    />
+                                </svg>
+                            )}
+                            {card.icon === "monitor" && (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="w-10 h-10 mx-auto"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                    />
+                                </svg>
+                            )}
+                        </div>
+                        <h3 class="text-main dark:text-white font-bold mb-2 text-lg">
+                            {card.title}
+                        </h3>
+                        <p class="text-sm text-muted dark:text-forge-300 leading-relaxed">
+                            {card.desc}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

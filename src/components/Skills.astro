@@ -1,0 +1,195 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getSkillsData } from "../data/skills";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const skills = getSkillsData(lang as any);
+---
+
+<section
+    id="skills"
+    class="scroll-mt-24 py-24 bg-transparent border-t border-forge-800 print:py-4 print:border-t-0"
+>
+    <div class="max-w-6xl mx-auto px-6 md:px-4">
+        <h2
+            class="text-3xl md:text-4xl font-display font-bold text-white mb-16 text-center print:text-black print:mb-8"
+        >
+            <span class="border-b-4 border-accent pb-2 print:border-black"
+                >{t("skills.title")}</span
+            >
+        </h2>
+
+        <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-12 print:grid-cols-3 print:gap-4"
+        >
+            {/* Core Stack */}
+            <div class="relative group print:break-inside-avoid">
+                {/* Header with Icon */}
+                <div class="flex items-center mb-8 print:mb-4">
+                    <div
+                        class="mr-4 text-accent print:text-black transition-colors"
+                    >
+                        {/* Layers Icon */}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="48"
+                            height="48"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-12 h-12 print:w-8 print:h-8"
+                        >
+                            <path
+                                d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"
+                            ></path>
+                            <path
+                                d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"
+                            ></path>
+                            <path
+                                d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3
+                            class="text-2xl font-bold text-white font-display print:text-black print:text-xl group-hover:text-accent transition-colors"
+                        >
+                            {skills.core.title}
+                        </h3>
+                        <div
+                            class="h-1 w-12 bg-forge-800 mt-2 rounded group-hover:bg-accent transition-colors duration-500 print:bg-black"
+                        >
+                        </div>
+                    </div>
+                </div>
+
+                {/* List */}
+                <ul class="space-y-3 font-mono text-sm tracking-wide">
+                    {
+                        skills.core.list.map((skill) => (
+                            <li class="flex items-center text-forge-300 hover:text-white transition-colors print:text-black group/item">
+                                <span class="text-forge-600 mr-3 select-none print:text-black group-hover/item:text-accent">
+                                    &gt;
+                                </span>
+                                {skill}
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            {/* Architecture */}
+            <div class="relative group print:break-inside-avoid">
+                {/* Header with Icon */}
+                <div class="flex items-center mb-8 print:mb-4">
+                    <div
+                        class="mr-4 text-accent print:text-black transition-colors"
+                    >
+                        {/* Compass Icon */}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="48"
+                            height="48"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-12 h-12 print:w-8 print:h-8"
+                        >
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon
+                                points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"
+                            ></polygon>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3
+                            class="text-2xl font-bold text-white font-display print:text-black print:text-xl group-hover:text-accent transition-colors"
+                        >
+                            {skills.arch.title}
+                        </h3>
+                        <div
+                            class="h-1 w-12 bg-forge-800 mt-2 rounded group-hover:bg-accent transition-colors duration-500 print:bg-black"
+                        >
+                        </div>
+                    </div>
+                </div>
+
+                {/* List */}
+                <ul class="space-y-3 font-mono text-sm tracking-wide">
+                    {
+                        skills.arch.list.map((skill) => (
+                            <li class="flex items-center text-forge-300 hover:text-white transition-colors print:text-black group/item">
+                                <span class="text-forge-600 mr-3 select-none print:text-black group-hover/item:text-accent">
+                                    ::
+                                </span>
+                                {skill}
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            {/* Leadership */}
+            <div class="relative group print:break-inside-avoid">
+                {/* Header with Icon */}
+                <div class="flex items-center mb-8 print:mb-4">
+                    <div
+                        class="mr-4 text-accent print:text-black transition-colors"
+                    >
+                        {/* Users Icon */}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="48"
+                            height="48"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-12 h-12 print:w-8 print:h-8"
+                        >
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+                            ></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3
+                            class="text-2xl font-bold text-white font-display print:text-black print:text-xl group-hover:text-accent transition-colors"
+                        >
+                            {skills.lead.title}
+                        </h3>
+                        <div
+                            class="h-1 w-12 bg-forge-800 mt-2 rounded group-hover:bg-accent transition-colors duration-500 print:bg-black"
+                        >
+                        </div>
+                    </div>
+                </div>
+
+                {/* List */}
+                <ul class="space-y-3 font-mono text-sm tracking-wide">
+                    {
+                        skills.lead.list.map((skill) => (
+                            <li class="flex items-center text-forge-300 hover:text-white transition-colors print:text-black group/item">
+                                <span class="text-forge-600 mr-3 select-none print:text-black group-hover/item:text-accent">
+                                    #
+                                </span>
+                                {skill}
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

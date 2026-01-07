@@ -1,0 +1,80 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar";
+
+export async function getStaticPaths() {
+    const experiences = await getCollection("experience");
+    return experiences.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={`${entry.data.role} at ${entry.data.company} | JP Portfolio`}>
+    <Navbar client:load />
+
+    <main class="pt-24 bg-forge-950 min-h-screen max-w-4xl mx-auto px-4">
+        <div class="mb-12 border-b border-forge-800 pb-8">
+            <a
+                href="/#experience"
+                class="text-magma-500 hover:text-white mb-6 inline-flex items-center gap-2 text-sm font-medium transition-colors"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Experience
+            </a>
+
+            <div
+                class="flex flex-col md:flex-row md:items-end justify-between gap-4"
+            >
+                <div>
+                    <h1
+                        class="text-3xl md:text-5xl font-display font-bold text-white mb-2"
+                    >
+                        {entry.data.role}
+                    </h1>
+                    <h2 class="text-xl md:text-2xl text-forge-300">
+                        {entry.data.company}
+                    </h2>
+                </div>
+                <div
+                    class="text-forge-400 font-mono bg-forge-900 px-4 py-2 rounded-lg border border-forge-800"
+                >
+                    {entry.data.period}
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mt-6">
+                {
+                    entry.data.tech.map((t) => (
+                        <span class="text-xs text-forge-200 bg-forge-900 border border-forge-700 px-3 py-1 rounded-full font-mono">
+                            {t}
+                        </span>
+                    ))
+                }
+            </div>
+        </div>
+
+        <article
+            class="max-w-none pb-20 text-base leading-relaxed text-forge-300 [&>p]:mb-4 [&>ul]:mb-4 [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:space-y-2 [&_li::marker]:text-magma-500 [&_strong]:text-white [&_b]:text-white [&>h1]:text-white [&>h1]:mb-4 [&>h2]:text-white [&>h2]:mb-4 [&>h3]:text-white [&>h3]:mb-4"
+        >
+            <Content />
+        </article>
+    </main>
+</Layout>

@@ -1,0 +1,86 @@
+---
+import "../styles/global.css";
+
+import Analytics from "../components/Analytics.astro";
+
+interface Props {
+	title: string;
+	lang?: string;
+}
+
+const { title, lang = "en" } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<Analytics />
+		<meta charset="UTF-8" />
+		<meta
+			name="description"
+			content="Unity Tech Lead Developer Portfolio"
+		/>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+
+		<script is:inline>
+			// Theme Initialization
+			const theme = (() => {
+				if (
+					typeof localStorage !== "undefined" &&
+					localStorage.getItem("theme")
+				) {
+					return localStorage.getItem("theme");
+				}
+				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					return "dark";
+				}
+				return "dark"; // Default to dark for this portfolio "Vulkan Forge" identity
+			})();
+
+			if (theme === "light") {
+				document.documentElement.classList.remove("dark");
+			} else {
+				document.documentElement.classList.add("dark");
+			}
+			window.localStorage.setItem("theme", theme);
+
+			// Language Persistence
+			(function () {
+				if (typeof localStorage !== "undefined") {
+					const preferredLang =
+						localStorage.getItem("preferred_lang");
+					const path = window.location.pathname;
+
+					// Avoid redirect loop: check current path vs target
+					if (
+						preferredLang === "pt" &&
+						(path === "/" || path === "/index.html")
+					) {
+						window.location.href = "/pt";
+					} else if (
+						preferredLang === "en" &&
+						(path === "/pt" || path === "/pt/")
+					) {
+						window.location.href = "/";
+					}
+				}
+			})();
+		</script>
+
+		<!-- Preconnect for fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body
+		class="bg-primary text-text-main overflow-x-hidden font-sans antialiased text-base selection:bg-accent selection:text-white print:bg-white print:text-black"
+	>
+		<slot />
+	</body>
+</html>

@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+
+    // Filter for English context:
+    // 1. Legacy EN files (slug or id starts with 'en/')
+    // 2. Unified files (no language prefix in id/slug)
+
+    const enProjects = projects.filter((p) => {
+        const id = p.id;
+        return id.startsWith("en/") || !id.includes("/");
+    });
+
+    return enProjects.map((entry) => {
+        // Normalize slug: remove 'en/' prefix if present
+        let cleanSlug = entry.slug || entry.id;
+        if (cleanSlug.startsWith("en/")) {
+            cleanSlug = cleanSlug.replace("en/", "");
+        }
+        // Handle case where id is like "poikilingo.md" -> slug "poikilingo"
+        if (cleanSlug.endsWith(".md")) {
+            cleanSlug = cleanSlug.replace(".md", "");
+        }
+
+        return {
+            params: { slug: cleanSlug },
+            props: { entry },
+        };
+    });
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+{/* Delegate Rendering to the Unified Layout */}
+{
+    /* We explicitly pass lang="en" to force English context for everything rendered here */
+}
+<ProjectLayout {...entry.data} lang="en">
+    <Content />
+</ProjectLayout>
