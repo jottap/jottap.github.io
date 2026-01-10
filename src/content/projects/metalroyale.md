@@ -10,6 +10,7 @@ metrics:
   duration: "72 Hours"
   multiplayer: "Photon (PUN)"
   platform: "WebGL / Browser"
+  architecture: "Client-Hosted (PUN)"
 
 # MIDIA
 cover_image: "/assets/projects/metalroyale/metalroyale_intro.gif"

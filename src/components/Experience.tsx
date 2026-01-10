@@ -107,52 +107,57 @@ const Experience: React.FC<ExperienceProps> = ({ experiences, lang = 'en' }) => 
                 </h2>
 
                 <div className="flex flex-col gap-6 print:block print:gap-4 px-6 md:px-0">
-                    {experiences.map((exp, index) => (
-                        <SpotlightCard
-                            key={index}
-                            href={`/experience/${exp.slug}`}
-                            className="bg-[#D1D5DB] dark:bg-[#262626] rounded-xl border-2 border-transparent hover:border-orange-500 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-accent/5 dark:shadow-none hover:-translate-y-1"
-                        >
-                            <div className="p-6 w-full flex flex-col md:flex-row items-start md:items-center">
-                                {/* Logo (Left) */}
-                                <div className="flex-shrink-0 w-16 h-16 bg-stone-100 dark:bg-forge-900 rounded-lg flex items-center justify-center mb-4 md:mb-0 md:mr-6 border border-stone-200 dark:border-forge-700 group-hover:border-accent transition-colors print:border-black print:bg-gray-100 overflow-hidden relative z-10">
-                                    <CompanyLogo logo={exp.data.logo} company={exp.data.company} />
-                                </div>
+                    {experiences.map((exp, index) => {
+                        const basePath = lang === 'pt' ? '/pt/experience' : '/experience';
+                        const cleanSlug = exp.slug.split('.')[0];
 
-                                {/* Info (Middle) */}
-                                <div className="flex-grow min-w-0 flex flex-col justify-center w-full">
-                                    {/* Mobile Date */}
-                                    <span className="md:hidden text-xs text-stone-500 dark:text-stone-400 mb-1 font-mono uppercase tracking-wider print:hidden">
-                                        {exp.data.period}
-                                    </span>
+                        return (
+                            <SpotlightCard
+                                key={index}
+                                href={`${basePath}/${cleanSlug}`}
+                                className="bg-[#D1D5DB] dark:bg-[#262626] rounded-xl border-2 border-transparent hover:border-orange-500 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-accent/5 dark:shadow-none hover:-translate-y-1"
+                            >
+                                <div className="p-6 w-full flex flex-col md:flex-row items-start md:items-center">
+                                    {/* Logo (Left) */}
+                                    <div className="flex-shrink-0 w-16 h-16 bg-stone-100 dark:bg-forge-900 rounded-lg flex items-center justify-center mb-4 md:mb-0 md:mr-6 border border-stone-200 dark:border-forge-700 group-hover:border-accent transition-colors print:border-black print:bg-gray-100 overflow-hidden relative z-10">
+                                        <CompanyLogo logo={exp.data.logo} company={exp.data.company} />
+                                    </div>
 
-                                    <h3 className="text-xl font-bold text-main dark:text-white group-hover:text-accent transition-colors truncate pr-2 print:text-black mb-1">
-                                        {exp.data.role}
-                                    </h3>
-                                    <p className="text-accent text-base font-medium print:text-black">{exp.data.company}</p>
+                                    {/* Info (Middle) */}
+                                    <div className="flex-grow min-w-0 flex flex-col justify-center w-full">
+                                        {/* Mobile Date */}
+                                        <span className="md:hidden text-xs text-stone-500 dark:text-stone-400 mb-1 font-mono uppercase tracking-wider print:hidden">
+                                            {exp.data.period}
+                                        </span>
 
-                                    <div className="flex flex-wrap gap-2 mt-2">
-                                        {exp.data.tech.slice(0, 5).map((t: string) => (
-                                            <span key={t} className="text-xs text-stone-200 dark:text-forge-500 bg-stone-800 dark:bg-primary/80 px-2 py-0.5 rounded border border-stone-700 dark:border-forge-800/50 print:text-black print:border-black print:bg-white">
-                                                {t}
-                                            </span>
-                                        ))}
+                                        <h3 className="text-xl font-bold text-main dark:text-white group-hover:text-accent transition-colors truncate pr-2 print:text-black mb-1">
+                                            {exp.data.role}
+                                        </h3>
+                                        <p className="text-accent text-base font-medium print:text-black">{exp.data.company}</p>
+
+                                        <div className="flex flex-wrap gap-2 mt-2">
+                                            {exp.data.tech.slice(0, 5).map((t: string) => (
+                                                <span key={t} className="text-xs text-stone-200 dark:text-forge-500 bg-stone-800 dark:bg-primary/80 px-2 py-0.5 rounded border border-stone-700 dark:border-forge-800/50 print:text-black print:border-black print:bg-white">
+                                                    {t}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Date Badge (Right - Desktop) */}
+                                    <div className="ml-auto pl-4 flex-shrink-0 hidden md:flex flex-col items-end">
+                                        <span className="text-sm font-mono bg-stone-100 dark:bg-primary text-muted dark:text-forge-400 px-3 py-1 rounded border border-stone-200 dark:border-forge-800 print:text-black print:border-black print:bg-white whitespace-nowrap">
+                                            {exp.data.period}
+                                        </span>
+                                    </div>
+
+                                    <div className="hidden md:block ml-6 opacity-0 group-hover:opacity-100 transition-opacity text-accent print:hidden">
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                                     </div>
                                 </div>
-
-                                {/* Date Badge (Right - Desktop) */}
-                                <div className="ml-auto pl-4 flex-shrink-0 hidden md:flex flex-col items-end">
-                                    <span className="text-sm font-mono bg-stone-100 dark:bg-primary text-muted dark:text-forge-400 px-3 py-1 rounded border border-stone-200 dark:border-forge-800 print:text-black print:border-black print:bg-white whitespace-nowrap">
-                                        {exp.data.period}
-                                    </span>
-                                </div>
-
-                                <div className="hidden md:block ml-6 opacity-0 group-hover:opacity-100 transition-opacity text-accent print:hidden">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
-                                </div>
-                            </div>
-                        </SpotlightCard>
-                    ))}
+                            </SpotlightCard>
+                        );
+                    })}
                 </div>
             </div>
         </section>

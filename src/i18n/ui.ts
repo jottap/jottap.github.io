@@ -46,6 +46,8 @@ export const ui = {
         'project.download_apple': 'Download on',
         'project.back_home': 'All Projects',
         'project.back_archive': 'Back to Archive',
+        'project.visit_website': 'Visit Website',
+        'project.play_itch': 'Play on Itch.io',
 
         // Archive Page (Refactored from 'table.*')
         'archive.title': 'Project Archive',
@@ -126,6 +128,8 @@ export const ui = {
         'project.download_apple': 'Baixar na',
         'project.back_home': 'Todos os Projetos',
         'project.back_archive': 'Voltar ao Arquivo',
+        'project.visit_website': 'Visitar Site',
+        'project.play_itch': 'Jogar na Itch.io',
 
         // Arquivo (Refatorado de 'table.*')
         'archive.title': 'Arquivo de Projetos',
