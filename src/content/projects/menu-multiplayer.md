@@ -28,8 +28,8 @@ gallery:
 i18n:
   en:
     title: "MENU"
-    subtitle: "Healthy Eating Game Portal"
-    description: "A multilingual game portal supported by Cargill Foundation. Developed in partnership with Cedro Technologies."
+    subtitle: "Healthy Eating Multiplayer Game"
+    description: "A multiplayer card game supported by Cargill Foundation. Developed in partnership with Cedro Technologies."
     
     my_role_title: "ROLE & IMPACT"
     my_role_summary: |
@@ -56,8 +56,8 @@ i18n:
 
   pt:
     title: "MENU"
-    subtitle: "Portal de Jogos de Alimentação Saudável"
-    description: "Portal de jogos multilíngue apoiado pela Fundação Cargill. Desenvolvido em parceria com a Cedro Technologies."
+    subtitle: "Jogo Multiplayer de Alimentação Saudável"
+    description: "Um jogo de cartas multiplayer apoiado pela Fundação Cargill. Desenvolvido em parceria com a Cedro Technologies."
     
     my_role_title: "ATUAÇÃO E IMPACTO"
     my_role_summary: |

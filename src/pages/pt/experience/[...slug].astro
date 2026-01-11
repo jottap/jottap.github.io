@@ -1,24 +1,24 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
-import Navbar from "../../components/Navbar";
+import Layout from "../../../layouts/Layout.astro";
+import Navbar from "../../../components/Navbar";
 
 export async function getStaticPaths() {
     const experiences = await getCollection("experience");
 
-    // Filter for English context:
-    // 1. Legacy EN files (slug or id starts with 'en/')
+    // Filter for Portuguese context:
+    // 1. Legacy PT files (slug or id starts with 'pt/')
     // 2. Unified files (no language prefix in id/slug)
-    const enExperience = experiences.filter((e) => {
+    const ptExperience = experiences.filter((e) => {
         const id = e.id;
-        return id.startsWith("en/") || !id.includes("/");
+        return id.startsWith("pt/") || !id.includes("/");
     });
 
-    return enExperience.map((entry) => {
-        // Normalize slug: remove 'en/' prefix if present
+    return ptExperience.map((entry) => {
+        // Normalize slug: remove 'pt/' prefix if present
         let cleanSlug = entry.slug || entry.id;
-        if (cleanSlug.startsWith("en/")) {
-            cleanSlug = cleanSlug.replace("en/", "");
+        if (cleanSlug.startsWith("pt/")) {
+            cleanSlug = cleanSlug.replace("pt/", "");
         }
         if (cleanSlug.endsWith(".md")) {
             cleanSlug = cleanSlug.replace(".md", "");
@@ -37,14 +37,14 @@ const { Content } = await entry.render();
 
 <Layout
     title={`${entry.data.role} at ${entry.data.company} | JP Portfolio`}
-    lang="en"
+    lang="pt"
 >
-    <Navbar client:load lang="en" />
+    <Navbar client:load lang="pt" />
 
     <main class="pt-24 bg-forge-950 min-h-screen max-w-4xl mx-auto px-4">
         <div class="mb-12 border-b border-forge-800 pb-8">
             <a
-                href="/#experience"
+                href="/pt#experience"
                 class="text-magma-500 hover:text-white mb-6 inline-flex items-center gap-2 text-sm font-medium transition-colors"
             >
                 <svg
@@ -60,7 +60,7 @@ const { Content } = await entry.render();
                         stroke-width="2"
                         d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg>
-                Back to Experience
+                Voltar para Experiência
             </a>
 
             <div

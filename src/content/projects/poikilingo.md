@@ -41,7 +41,7 @@ i18n:
   en:
     title: "Poikilingo"
     subtitle: "Multilingual Kids Learning Platform"
-    description: "Award-winning EdTech platform funded by the Danish Government and EU. My technical roadmap was pivotal in securing these grants."
+    description: "Award-winning EdTech platform funded by the Danish Government and EU. I defined the technological strategy that supported the acquisition of these grants."
     
     my_role_title: "ROLE & IMPACT"
     my_role_summary: |
@@ -69,7 +69,7 @@ i18n:
   pt:
     title: "Poikilingo"
     subtitle: "Plataforma Educacional Multilíngue"
-    description: "Plataforma EdTech premiada e financiada pelo Governo Dinamarquês e UE. Meu roadmap técnico foi fundamental para garantir esses subsídios."
+    description: "Plataforma EdTech premiada e financiada pelo Governo Dinamarquês e UE. Defini a estratégia tecnológica que suportou a captação destes investimentos."
     
     my_role_title: "ATUAÇÃO E IMPACTO"
     my_role_summary: |

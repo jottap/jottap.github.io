@@ -109,7 +109,7 @@ const Experience: React.FC<ExperienceProps> = ({ experiences, lang = 'en' }) => 
                 <div className="flex flex-col gap-6 print:block print:gap-4 px-6 md:px-0">
                     {experiences.map((exp, index) => {
                         const basePath = lang === 'pt' ? '/pt/experience' : '/experience';
-                        const cleanSlug = exp.slug.split('.')[0];
+                        const cleanSlug = exp.slug.split('/').pop();
 
                         return (
                             <SpotlightCard
