@@ -1,5 +1,7 @@
 ---
 slug: "poikilingo"
+featured: true
+sortOrder: 1
 date: 2022-06-01
 showcase: true
 category: "EdTech Platform"

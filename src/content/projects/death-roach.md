@@ -1,5 +1,7 @@
 ---
 slug: "death-roach"
+featured: true
+sortOrder: 3
 date: 2023-08-15
 showcase: true
 category: "Game Jam"

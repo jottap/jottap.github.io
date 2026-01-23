@@ -14,6 +14,7 @@ export interface ProjectData {
         cover_image?: string;
         desc: string;
         tech: string[];
+        featured?: boolean;
     };
 }
 
@@ -24,7 +25,7 @@ interface ProjectsProps {
 
 const Projects: React.FC<ProjectsProps> = ({ projects, lang = 'en' }) => {
     const t = ui[lang as 'en' | 'pt'];
-    const [activeTab, setActiveTab] = useState<'industry' | 'tools' | 'demos'>('industry');
+    const [activeTab, setActiveTab] = useState<'all' | 'industry' | 'tools' | 'demos'>('all');
 
     // Mapping for backward compatibility
     const filterMap = {
@@ -33,7 +34,20 @@ const Projects: React.FC<ProjectsProps> = ({ projects, lang = 'en' }) => {
         demos: ['demos', 'rnd', 'labs']
     };
 
-    const filteredProjects = projects.filter(p => filterMap[activeTab].includes(p.data.type));
+    const getFilteredProjects = () => {
+        if (activeTab === 'all') {
+            const featured = projects.filter(p => p.data.featured);
+            // Fallback: if no featured projects, take the first 4
+            if (featured.length === 0) {
+                return projects.slice(0, 4);
+            }
+            // Limit to 4 if more than 4 are featured (optional, but requested "limit to exactly 4")
+            return featured.slice(0, 4);
+        }
+        return projects.filter(p => filterMap[activeTab as keyof typeof filterMap].includes(p.data.type));
+    };
+
+    const filteredProjects = getFilteredProjects();
 
     const getProjectLink = (slug: string) => {
         // If legacy slug already includes lang (old structure), use it directly?
@@ -57,6 +71,15 @@ const Projects: React.FC<ProjectsProps> = ({ projects, lang = 'en' }) => {
                 {/* Filters */}
                 <div className="relative group md:static mb-12 print:hidden -mx-6 md:mx-0">
                     <div className="flex flex-nowrap gap-3 px-4 py-2 pr-12 overflow-x-auto snap-x snap-mandatory touch-pan-x scrollbar-hide [mask-image:linear-gradient(to_right,black_85%,transparent)] md:[mask-image:none] md:flex-wrap md:justify-center md:overflow-visible">
+                        <button
+                            onClick={() => setActiveTab('all')}
+                            className={`whitespace-nowrap flex-shrink-0 snap-start h-10 px-6 rounded-xl font-medium text-sm transition-all duration-300 border ${activeTab === 'all'
+                                ? 'bg-accent !text-white border-accent font-bold shadow-lg'
+                                : 'bg-transparent text-forge-300 border-white/10 hover:text-white hover:border-white/20'
+                                }`}
+                        >
+                            ALL
+                        </button>
                         <button
                             onClick={() => setActiveTab('industry')}
                             className={`whitespace-nowrap flex-shrink-0 snap-start h-10 px-6 rounded-xl font-medium text-sm transition-all duration-300 border ${activeTab === 'industry'
@@ -88,7 +111,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects, lang = 'en' }) => {
                 </div>
 
                 {/* Grid */}
-                <div className={`grid gap-8 ${activeTab === 'industry' ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'} print:grid-cols-2 print:gap-4 md:px-0`}>
+                <div className={`grid gap-8 ${activeTab === 'industry' || activeTab === 'all' ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'} print:grid-cols-2 print:gap-4 md:px-0`}>
                     {filteredProjects.map((project, index) => (
                         <a
                             href={getProjectLink(project.slug)}
@@ -96,7 +119,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects, lang = 'en' }) => {
                             className={`group relative rounded-xl overflow-hidden bg-primary border border-forge-800 hover:border-accent transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(234,88,12,0.2)] animate-fadeIn block print:border-black print:shadow-none print:transform-none`}
                             style={{ animationDelay: `${index * 100}ms` }}
                         >
-                            <div className={`${activeTab === 'industry' ? 'aspect-video' : 'aspect-[4/3]'} overflow-hidden relative`}>
+                            <div className={`${activeTab === 'industry' || activeTab === 'all' ? 'aspect-video' : 'aspect-[4/3]'} overflow-hidden relative`}>
                                 <img
                                     src={project.data.image}
                                     alt={project.data.title}
@@ -111,7 +134,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects, lang = 'en' }) => {
                                     {project.data.category}
                                 </div>
 
-                                <h3 className={`${activeTab === 'industry' ? 'text-3xl' : 'text-2xl'} font-display font-bold text-white mb-2 group-hover:text-accent transition-colors print:text-black`}>
+                                <h3 className={`${activeTab === 'industry' || activeTab === 'all' ? 'text-3xl' : 'text-2xl'} font-display font-bold text-white mb-2 group-hover:text-accent transition-colors print:text-black`}>
                                     {project.data.title}
                                 </h3>
 

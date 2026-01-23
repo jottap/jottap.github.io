@@ -1,5 +1,7 @@
 ---
 slug: "metal-royale"
+featured: true
+sortOrder: 4
 date: 2019-06-22
 showcase: true
 category: "Game Jam"

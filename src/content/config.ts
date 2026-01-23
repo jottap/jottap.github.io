@@ -7,6 +7,7 @@ const projectsCollection = defineCollection({
         layout: z.string().optional(), // Layout path
         date: z.coerce.date().optional(), // Project date
         showcase: z.boolean().default(false), // Replaces is_featured
+        featured: z.boolean().optional(), // High-level "Universal" featured flag
         category: z.string(),
         type: z.enum(['enterprise', 'tooling', 'labs', 'industry', 'tools', 'demos', 'production', 'rnd']), // Hybrid for migration
         tech: z.array(z.string()),

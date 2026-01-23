@@ -1,5 +1,7 @@
 ---
 slug: "holocards"
+featured: true
+sortOrder: 2
 date: 2021-10-01
 showcase: true
 category: "Professional"
