@@ -11,45 +11,43 @@ export const ui = {
 
         // Hero
         'hero.available': 'Available for new opportunities',
-        'hero.title.part1': 'Building Digital',
-        'hero.title.part2': 'Experiences',
-        'hero.subtitle': 'Unity Tech Lead & Game Systems Architect. Crafting high-performance interactive experiences with precision and passion.',
+        'hero.title': 'Senior Unity Developer & Software Architect',
+        'hero.subtitle': 'Specialized in building systems with robust, modular, and scalable architectures, delivering engaging interactive experiences. Explore my featured projects below.',
         'hero.viewProjects': 'Projects',
         'hero.experience': 'Experience',
         'hero.downloadCv': 'Resume',
 
         // About
-        'about.role1': 'Tech Lead',
-        'about.role2': 'Architect',
+        'about.role1': 'Software Architect',
+        'about.role2': 'Senior Developer',
         'about.desc': 'With over a decade of experience in <strong class="text-white">Game Development</strong>, I specialize in building scalable architecture and mentoring high-performing teams. My focus is on bridging the gap between technical excellence and creative vision.',
         'about.card1.title': 'Architecture',
-        'about.card1.desc': 'Designing scalable, maintainable systems for AAA & Indie titles.',
-        'about.card2.title': 'Leadership',
-        'about.card2.desc': 'Leading teams, fostering growth, and driving technical vision.',
+        'about.card1.desc': 'Designing modular, maintainable systems using SOLID and Clean Architecture.',
+        'about.card2.title': 'Tooling & Automation',
+        'about.card2.desc': 'Optimizing workflows with custom Editor suites and UPM-based modularity.',
         'about.card3.title': 'Mentoring',
         'about.card3.desc': 'Sharing knowledge and empowering developers to reach their potential.',
 
-        // Skills (Redundancy removed: kept only titles needed for UI headers)
+        // Skills
         'skills.title': 'Technical Proficiency',
         'skills.core.title': 'Core Stack',
         'skills.arch.title': 'Architecture',
         'skills.lead.title': 'Leadership',
 
-        // Project Details Page (NEW)
-        'project.overview': 'Overview', // Before: 'Technical Overview'
-        'project.challenge': 'The Challenge', // Before: 'The Challenge'
-        'project.features': 'Implementation Highlights', // Before: 'Key Features'
+        // Project Details
+        'project.overview': 'Overview',
+        'project.challenge': 'The Challenge',
+        'project.features': 'Implementation Highlights',
         'project.metrics': 'Metrics',
         'project.stack': 'Tech Stack',
-        'project.role': 'Engineering Ownership', // Before: 'My Role'
-        'project.download_google': 'Get it on',
-        'project.download_apple': 'Download on',
         'project.back_home': 'All Projects',
         'project.back_archive': 'Back to Archive',
         'project.visit_website': 'Visit Website',
         'project.play_itch': 'Play on Itch.io',
+        'project.download_google': 'Get it on',
+        'project.download_apple': 'Download on',
 
-        // Archive Page (Refactored from 'table.*')
+        // Archive
         'archive.title': 'Project Archive',
         'archive.subtitle': 'A comprehensive list of experiments, contributions, and professional work.',
         'archive.search_placeholder': 'Search projects...',
@@ -58,7 +56,6 @@ export const ui = {
         'archive.filter.commercial': 'Commercial & Enterprise',
         'archive.filter.tools': 'Tools & Tech',
         'archive.filter.labs': 'Labs & Demos',
-        // Columns
         'archive.col.year': 'Year',
         'archive.col.project': 'Project',
         'archive.col.category': 'Category',
@@ -93,21 +90,20 @@ export const ui = {
 
         // Hero
         'hero.available': 'Disponível para novas oportunidades',
-        'hero.title.part1': 'Criando Experiências',
-        'hero.title.part2': 'Digitais',
-        'hero.subtitle': 'Unity Tech Lead e Arquiteto de Sistemas. Criando experiências interativas de alta performance com precisão e paixão.',
+        'hero.title': 'Senior Unity Developer & Software Architect',
+        'hero.subtitle': 'Especialista na criação de sistemas com arquiteturas robustas, modulares e escaláveis, entregando experiências interativas envolventes. Explore meus projetos em destaque abaixo.',
         'hero.viewProjects': 'Projetos',
         'hero.experience': 'Experiência',
         'hero.downloadCv': 'Currículo',
 
         // Sobre
-        'about.role1': 'Tech Lead',
-        'about.role2': 'Arquiteto',
+        'about.role1': 'Arquiteto de Software',
+        'about.role2': 'Desenvolvedor Senior',
         'about.desc': 'Com mais de uma década de experiência em <strong class="text-white">Desenvolvimento de Games</strong>, especializo-me na construção de arquiteturas escaláveis e na mentoria de equipes de alta performance. Meu foco é preencher a lacuna entre excelência técnica e visão criativa.',
         'about.card1.title': 'Arquitetura',
-        'about.card1.desc': 'Projetando sistemas escaláveis e sustentáveis para jogos AAA & Indie.',
-        'about.card2.title': 'Liderança',
-        'about.card2.desc': 'Liderando equipes, promovendo crescimento e impulsionando a visão técnica.',
+        'about.card1.desc': 'Projetando sistemas modulares e sustentáveis usando SOLID e Clean Architecture.',
+        'about.card2.title': 'Ferramentas & Automação',
+        'about.card2.desc': 'Otimizando fluxos de trabalho com suítes de Editor customizadas e modularidade baseada em UPM.',
         'about.card3.title': 'Mentoria',
         'about.card3.desc': 'Compartilhando conhecimento e capacitando desenvolvedores a alcançar seu potencial.',
 
@@ -117,21 +113,20 @@ export const ui = {
         'skills.arch.title': 'Arquitetura',
         'skills.lead.title': 'Liderança',
 
-        // Detalhes do Projeto (NOVO)
+        // Detalhes do Projeto
         'project.overview': 'Visão Geral',
         'project.challenge': 'O Desafio',
         'project.features': 'Destaques da Implementação',
         'project.metrics': 'Métricas',
         'project.stack': 'Tecnologias',
-        'project.role': 'Liderança de Engenharia',
-        'project.download_google': 'Disponível no',
-        'project.download_apple': 'Baixar na',
         'project.back_home': 'Todos os Projetos',
         'project.back_archive': 'Voltar ao Arquivo',
         'project.visit_website': 'Visitar Site',
         'project.play_itch': 'Jogar na Itch.io',
+        'project.download_google': 'Disponível no',
+        'project.download_apple': 'Baixar na',
 
-        // Arquivo (Refatorado de 'table.*')
+        // Arquivo
         'archive.title': 'Arquivo de Projetos',
         'archive.subtitle': 'Uma lista completa de experimentos, contribuições e trabalhos profissionais.',
         'archive.search_placeholder': 'Buscar projetos...',
@@ -140,7 +135,6 @@ export const ui = {
         'archive.filter.commercial': 'Comercial & Enterprise',
         'archive.filter.tools': 'Ferramentas & Tech',
         'archive.filter.labs': 'Labs & Demos',
-        // Colunas
         'archive.col.year': 'Ano',
         'archive.col.project': 'Projeto',
         'archive.col.category': 'Categoria',
@@ -149,7 +143,7 @@ export const ui = {
 
         // Contato & Footer
         'connect.whatsapp.title': 'Bate-papo Rápido',
-        'connect.whatsapp.desc': 'Disponível para discussões técnicas.',
+        'connect.whatsapp.desc': 'Disponível para discussões técnicas diretas.',
         'connect.whatsapp.action': 'Conversar no WhatsApp',
         'connect.email.title': 'Enviar Email',
         'connect.email.desc': 'Para consultas detalhadas e oportunidades.',

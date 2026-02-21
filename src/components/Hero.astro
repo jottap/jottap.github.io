@@ -1,14 +1,12 @@
 ---
 import { profile } from "../data/profile";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import { getEntry } from "astro:content";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const { name, title, bio, socials, avatar_url, cv_download_url } = profile;
+const { name, title, socials, avatar_url, cv_download_url } = profile;
 
-const heroData = await getEntry("sections", `${lang}/hero`);
-const subtitle = heroData?.data?.subtitle || t("hero.subtitle");
+const subtitle = t("hero.subtitle");
 ---
 
 <section
@@ -50,29 +48,35 @@ const subtitle = heroData?.data?.subtitle || t("hero.subtitle");
         <h2
           class="text-2xl md:text-3xl font-display font-medium text-accent mb-6 bg-clip-text bg-gradient-to-r from-accent via-orange-500 to-yellow-500 print:text-black"
         >
-          {title}
+          {
+            t("hero.title")
+              .split("&")
+              .map((part, i) =>
+                i === 1 ? <span class="whitespace-nowrap">&{part}</span> : part,
+              )
+          }
         </h2>
 
         <p
-          class="text-lg text-forge-300 mb-8 max-w-lg leading-relaxed print:text-black"
+          class="text-lg text-forge-300 mb-8 max-w-2xl leading-relaxed text-balance print:text-black"
         >
           {subtitle}
         </p>
 
         <!-- Social Icons -->
-        <div class="flex gap-4 mb-8 print:hidden">
+        <div class="flex flex-wrap gap-3 sm:gap-4 md:gap-5 mb-8 print:hidden">
           {
             socials.map((social) => (
               <a
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface border border-forge-700 text-forge-400 hover:text-white hover:border-accent hover:bg-forge-800 transition-all duration-300 group"
+                class="w-12 h-12 md:w-11 md:h-11 flex items-center justify-center rounded-xl bg-surface border border-forge-700 text-forge-400 hover:text-accent hover:border-accent hover:bg-forge-800 transition-all duration-300 group hover:-translate-y-1"
                 aria-label={social.name}
               >
                 {social.icon === "github" && (
                   <svg
-                    class="w-5 h-5 group-hover:scale-110 transition-transform"
+                    class="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -86,7 +90,7 @@ const subtitle = heroData?.data?.subtitle || t("hero.subtitle");
                 )}
                 {social.icon === "linkedin" && (
                   <svg
-                    class="w-5 h-5 group-hover:scale-110 transition-transform"
+                    class="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -100,7 +104,7 @@ const subtitle = heroData?.data?.subtitle || t("hero.subtitle");
                 )}
                 {social.icon === "itchio" && (
                   <svg
-                    class="w-5 h-5 group-hover:scale-110 transition-transform"
+                    class="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -112,7 +116,7 @@ const subtitle = heroData?.data?.subtitle || t("hero.subtitle");
                 )}
                 {social.icon === "discord" && (
                   <svg
-                    class="w-5 h-5 group-hover:scale-110 transition-transform"
+                    class="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"

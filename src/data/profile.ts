@@ -1,7 +1,6 @@
 export const profile = {
     name: "João Paulo Oliveira",
-    title: "Unity Tech Lead & Indie Developer",
-    bio: "Forging immersively scalable worlds. Expert in Unity architecture, DOTS, and performance optimization.",
+    title: "Senior Unity Developer & Software Architect",
     avatar_url: "/avatar.jpg",
     location: "Brazil (Remote)",
     email: "joaopaulo_oli@hotmail.com",
